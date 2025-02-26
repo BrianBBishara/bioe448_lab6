@@ -1,4 +1,4 @@
-const int sensor_pin = 10;
+const int sensor_pin = 0;
 int pulse_signal = 0;
 float BPM = 0;
 
@@ -11,6 +11,7 @@ void setup() {
 
 void loop() {
 
+  delay(50);
   pulse_signal = analogRead(sensor_pin);
   Serial.println(pulse_signal);
   
