@@ -21,14 +21,18 @@ void setup() {
 
 void loop() {
 
+  // data acquisition
   delay(50);
   pulse_signal = analogRead(sensor_pin);
   //Serial.println(pulse_signal);
 
 
   if (pulse_signal > upper_threshold && any_peak_detected == false) {
+
+    // add any peak flag when upper threshold is met and flag is removed
     any_peak_detected = true;
     
+    // calculate pulse period from detected peaks
     if (first_peak_detected == false) {
       first_pulse_time = millis();
     } else {
@@ -37,11 +41,13 @@ void loop() {
       first_pulse_time = second_pulse_time;
     }
 
+    // add first peak flag when first upper threshold is met
     first_peak_detected = true;
 
   }
 
   if (pulse_signal < lower_threshold) {
+    // remove any peak flag when lower threshold is met
     any_peak_detected = false;
   }
   
